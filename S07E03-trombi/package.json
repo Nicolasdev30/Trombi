@@ -1,0 +1,76 @@
+{
+  "name": "trombi",
+  "version": "0.1.0",
+  "description": "Une application commandée par Nicole pour faciliter les contacts entre étudiants, cette appli nous permettra d'apprendre à manipuler des BDD",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "pg": "^8.13.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9",
+    "prettier": "^3.5.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/O-clock-Freyja/S07E01-gestion-de-projet.git"
+  },
+  "keywords": [
+    "express",
+    "ejs",
+    "postgresql",
+    "psql",
+    "postgres",
+    "sql",
+    "conception",
+    "wireframes",
+    "module",
+    "pg",
+    "pg"
+  ],
+  "author": "Oclock-Freyja",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/O-clock-Freyja/S07E01-gestion-de-projet/issues"
+  },
+  "homepage": "https://github.com/O-clock-Freyja/S07E01-gestion-de-projet#readme",
+  "type": "module",
+  "prettier": {
+    "printWidth": 80,
+    "tabWidth": 4,
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "bracketSpacing": true,
+    "jsxBracketSameLine": false,
+    "overrides": [
+      {
+        "files": "*.js",
+        "options": {
+          "parser": "babel"
+        }
+      },
+      {
+        "files": "*.json",
+        "options": {
+          "parser": "json",
+          "tabWidth": 2
+        }
+      }
+    ],
+    "semi": true,
+    "requirePragma": false,
+    "proseWrap": "preserve",
+    "arrowParens": "avoid",
+    "htmlWhitespaceSensitivity": "css",
+    "quoteProps": "as-needed"
+  }
+}

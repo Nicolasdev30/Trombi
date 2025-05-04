@@ -1,0 +1,50 @@
+<%- include('partials/head') %>
+
+<% if (locals.promo) { %>
+
+    <h1>Liste des étudiants de la promo : <%= promo.name %></h1>
+
+<% } else { %>
+
+    <p><a href="/">Rien à voir ici : retour maison</a></p>
+
+<% }  %>
+
+<% if (locals.students && locals.students.length) { %>
+    <ul class="cards">
+
+        <% for( let i = 0; i < students.length; i++ ) { %>
+
+            <li class="card">
+                <a href="student.html">
+                    <figure>
+                        <img src="<%= students[i].profile_picture_url %>" alt="Portrait de <%= students[i].first_name %> <%= students[i].last_name %>">
+                        <figcaption><%= students[i].first_name %> <%= students[i].last_name %></figcaption>
+                    </figure>
+                </a>
+            </li>
+
+        <% } %>
+
+    </ul>
+
+<% } else { %>
+
+    <p>Pas encore d'étudiants inscrits à cette promo</p>
+
+<% }  %>
+
+
+
+
+<nav class="pagination">
+    <ul>
+        <li><a href="#">Précedent</a></li>
+        <li><a href="#">1</a></li>
+        <li class="active"><span>2</span></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">Suivant</a></li>
+    </ul>
+</nav>
+
+<%- include('partials/footer') %>
