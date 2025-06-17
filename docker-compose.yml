@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: trombi-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: trombi
+      POSTGRES_USER: trombi_user
+      POSTGRES_PASSWORD: trombi_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./data/create_db.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - trombi-network
+
+  # Node.js Application
+  app:
+    build: .
+    container_name: trombi-app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      BASE_URL: http://localhost
+      PG_URL: postgresql://trombi_user:trombi_password@postgres:5432/trombi
+    depends_on:
+      - postgres
+    networks:
+      - trombi-network
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+  # Development version with hot reload
+  app-dev:
+    build: .
+    container_name: trombi-app-dev
+    restart: unless-stopped
+    ports:
+      - "3001:3000"
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+      BASE_URL: http://localhost
+      PG_URL: postgresql://trombi_user:trombi_password@postgres:5432/trombi
+    depends_on:
+      - postgres
+    networks:
+      - trombi-network
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: npm run dev
+    profiles:
+      - dev
+
+volumes:
+  postgres_data:
+
+networks:
+  trombi-network:
+    driver: bridge
